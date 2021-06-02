@@ -2,11 +2,9 @@ package com.enlyee.smartgotchi;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,11 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int gameAttempts;
     private int random;
-    private int SHORTduration;
     private int creatureChoice;
     private int resourceID;
-    private int width;
-    private int height;
     private int tapTracker;
 
     private TextView hungerIntText;
@@ -115,20 +110,11 @@ public class MainActivity extends AppCompatActivity {
     Toast nopeToast;
     Toast correctToast;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         myPet = new Pet();
-
-        Point size = new Point();
-        Display display = getDisplay();
-        display.getSize(size);
-
-        width = size.x;
-        height = size.y;
-        SHORTduration = Toast.LENGTH_SHORT;
 
         hungerIntText = findViewById(R.id.hungerinttext);
         waterIntText = findViewById(R.id.waterinttext);
@@ -199,10 +185,8 @@ public class MainActivity extends AppCompatActivity {
         treatAnimation = (AnimationDrawable) treatImg.getBackground();
         heartAnimation = (AnimationDrawable) heartImage.getBackground();
 
-        nopeToast = Toast.makeText(context, context.getString(R.string.nope), SHORTduration);
-        correctToast = Toast.makeText(context, context.getString(R.string.correct), SHORTduration);
-
-        display.getSize(size);
+        nopeToast = Toast.makeText(context, context.getString(R.string.nope), Toast.LENGTH_SHORT);
+        correctToast = Toast.makeText(context, context.getString(R.string.correct), Toast.LENGTH_SHORT);
 
         settings();
         findViewById(R.id.mainall).setOnTouchListener(handleTouch);
@@ -578,7 +562,7 @@ public class MainActivity extends AppCompatActivity {
         int randomEv = (int) (Math.random() * 100);
         if(randomEv <= percentage){
             String eventText = myPet.randomEvent();
-            eventToast = Toast.makeText(context, eventText, SHORTduration);
+            eventToast = Toast.makeText(context, eventText, Toast.LENGTH_SHORT);
             eventToast.show();
         }
     }
@@ -629,12 +613,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void animateCreature(){
-        int randomX = 300 + (int) (Math.random() * (300 - (width - 300)) + 1);
-        int randomY = 300 + (int) (Math.random() * (300 - (height - 300)) + 1);
-        creatureAnimator = ObjectAnimator.ofFloat(creatureImage, "translationX", randomX);
+        creatureAnimator = ObjectAnimator.ofFloat(creatureImage, "translationX", 0);
         creatureAnimator.setDuration(2000);
         creatureAnimator.start();
-        creatureAnimator = ObjectAnimator.ofFloat(creatureImage, "translationY", randomY);
+        creatureAnimator = ObjectAnimator.ofFloat(creatureImage, "translationY", 0);
         creatureAnimator.setDuration(2000);
         creatureAnimator.start();
     }
@@ -737,18 +719,15 @@ public class MainActivity extends AppCompatActivity {
         float xC = event.getX();
         float yC = event.getY();
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_UP:
-                myPet.updateHappy(1, false);
-                animateCreature(xC, yC);
-                if (tapTracker<5){
-                    tapTracker++;
-                }
-                else {
-                    tapTracker = 0;
-                    event();
-                }
-                break;
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            myPet.updateHappy(1, false);
+            animateCreature(xC, yC);
+            if (tapTracker < 5) {
+                tapTracker++;
+            } else {
+                tapTracker = 0;
+                event();
+            }
         }
         updateGame();
         return true;
