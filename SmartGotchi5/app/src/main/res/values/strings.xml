@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SmartGotchi</string>
+    <string name="loadedpetname">SmartGotchi</string>
+    <string name="create_a_new_pet">Создать нового питомца?</string>
+    <string name="open_a_pet_already_created">Открыть уже созданного питомца?</string>
+    <string name="name_your_new_pet">Назови своего питомца!</string>
+    <string name="age">Возраст</string>
+    <string name="hunger">Голод</string>
+    <string name="water">Жажда</string>
+    <string name="happy">Счастье</string>
+    <string name="health">Здоровье</string>
+    <string name="death">Смерть</string>
+    <string name="pet_name">Имя питомца</string>
+    <string name="submit">Подтвердить</string>
+    <string name="game_1">Угадай число</string>
+    <string name="game_2">Отгадай букву</string>
+    <string name="guess_a_number">Угадай число (1–5)</string>
+    <string name="you_get_2_tries">У тебя есть 2 попытки</string>
+    <string name="guess_a_letter">Отгадай букву</string>
+    <string name="nope">Неправильно!</string>
+    <string name="correct">Правильно!</string>
+    <string name="your_pet_died">Твой питомец умер :( Надеюсь, ему "там" будет хорошо…</string>
+</resources>
