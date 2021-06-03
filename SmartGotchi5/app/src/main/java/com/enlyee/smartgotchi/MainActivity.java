@@ -1,6 +1,7 @@
 package com.enlyee.smartgotchi;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -31,7 +32,6 @@ import static java.lang.Math.abs;
 import static java.lang.System.currentTimeMillis;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private Pet myPet;
 
